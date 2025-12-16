@@ -1,13 +1,11 @@
 import { Text } from 'react-native';
 import { theme } from '../../theme/theme';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import TopBar from '../../components/common/TopBar';
 
-export default function HomeScreen() {
+export default function Favoritescreen() {
   return (
     <SafeAreaView style={theme.screen}>
-      <TopBar />
-      <Text style={theme.title}>Welcome to homeeee!</Text>
+      <Text style={theme.text}>Welcome to my favoritesss!</Text>
     </SafeAreaView>
   );
 }
