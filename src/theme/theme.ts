@@ -6,12 +6,17 @@ import { fonts } from './font';
 export const theme = StyleSheet.create({
   screen: {
     flex: 1,
-    color: colors.text,
-    padding: 16,
+    paddingHorizontal: 16,
   },
+
   text: {
     color: colors.text,
     fontFamily: fonts.regular,
+    fontSize: 16,
+  },
+  textSemibold: {
+    color: colors.text,
+    fontFamily: fonts.semibold,
     fontSize: 16,
   },
   title: {

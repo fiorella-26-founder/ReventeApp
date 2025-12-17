@@ -19,7 +19,7 @@ export default function TopBar() {
         <Text style={styles.burgerText}>☰</Text>
       </TouchableOpacity>
 
-      <Text style={theme.text}>Revente</Text>
+      <Text style={theme.text}>ENTRALA</Text>
 
       {/* Spacer para centrar el título */}
       <View style={{ width: 32 }} />
