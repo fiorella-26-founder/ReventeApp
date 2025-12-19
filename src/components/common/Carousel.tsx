@@ -7,32 +7,58 @@ const { width } = Dimensions.get('window');
 
 interface Props {
   data: any[];
-  onPress?: (item: any) => void;
+  onPressItem?: (item: any) => void;
+  onToggleFavorite?: (item: any) => void;
+  favorites?: string[]; // ids favoritos
 }
 
-export default function AppCarousel({ data, onPress }: Props) {
+
+export default function AppCarousel({ data, onPressItem, onToggleFavorite, favorites = [] }: Props) {
   return (
-    <View>
-      <Carousel
-        width={width}
-        height={180}
-        data={data}
-        autoPlay
-        autoPlayInterval={3500}
-        loop
-        pagingEnabled
-        renderItem={({ item }) => (
-          <Pressable onPress={() => onPress?.(item)}>
+    <Carousel
+      width={width}
+      height={220}
+      data={data}
+      autoPlay
+      loop
+      renderItem={({ item }) => {
+        const isFavorite = favorites.includes(item.id);
+
+        return (
+          <Pressable onPress={() => onPressItem?.(item)}>
             <View style={styles.card}>
               <Image source={{ uri: item.image }} style={styles.image} />
+
               <View style={styles.overlay}>
-                <Text style={styles.title}>{item.title}</Text>
+                <View style={styles.dataCtnr}>
+                  <View>
+                    <Text style={styles.title}>{item.title}</Text>
+                    <Text style={styles.subtitle}>{item.desc}</Text>
+                    <Text style={styles.title}>{item.price}</Text>
+                  </View>
+
+                  <Pressable
+                    onPress={() => onToggleFavorite?.(item)}
+                    hitSlop={10}
+                    style={styles.icon}
+
+                  >
+                    <Image
+                      source={
+                        isFavorite
+                          ? require('../../../assets/icons/full-heart.png')
+                          : require('../../../assets/icons/heart.png')
+                      }
+                      style={styles.icon}
+                    />
+                  </Pressable>
+                </View>
               </View>
             </View>
           </Pressable>
-        )}
-      />
-    </View>
+        );
+      }}
+    />
   );
 }
 
@@ -50,12 +76,26 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     width: '100%',
-    padding: 12,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    padding: 10,
+    backgroundColor: 'rgba(0,0,0,0.7)',
+  },
+  dataCtnr: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+
   },
   title: {
     color: colors.white,
     fontSize: 16,
     fontWeight: '600',
   },
+  subtitle: {
+    color: colors.white,
+    fontSize: 14,
+  },
+  icon: {
+    width: 28,
+    height: 28,
+    alignSelf: 'center'
+  }
 });

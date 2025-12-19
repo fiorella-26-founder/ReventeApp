@@ -1,5 +1,5 @@
 // src/components/HomeEventCard.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
 import { colors } from '../../theme/colors';
 
@@ -9,6 +9,18 @@ interface Props {
 }
 
 export default function HomeEventCard({ item, onPress }: Props) {
+    const [state, setState] = useState({
+        isFavorite: false,
+    });
+
+    const markFavorite = () => {
+        setState(prev => ({
+            ...prev,
+            isFavorite: !prev.isFavorite,
+        }));
+    };
+
+
     return (
         <Pressable onPress={() => onPress?.(item)} style={styles.container}>
             {item.image && (
@@ -20,11 +32,17 @@ export default function HomeEventCard({ item, onPress }: Props) {
                 {item.date && <Text style={styles.meta}>{item.date}</Text>}
                 {item.location && <Text style={styles.meta}>{item.location}</Text>}
             </View>
-            <Image
-                source={require('../../../assets/icons/heart.png')}
-                style={styles.icon}
 
-            />
+            <Pressable onPress={markFavorite}>
+                <Image
+                    source={
+                        state.isFavorite
+                            ? require('../../../assets/icons/full-heart.png')
+                            : require('../../../assets/icons/heart.png')
+                    }
+                    style={styles.icon}
+                />
+            </Pressable>
         </Pressable>
     );
 }

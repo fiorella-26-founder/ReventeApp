@@ -6,6 +6,7 @@ import AppInput from '../../components/common/AppInput';
 import AppCarousel from '../../components/common/Carousel';
 import HomeEventCard from '../../components/layout/HomeEventCard';
 import { colors } from '../../theme/colors';
+import { useState } from 'react';
 
 
 const trendingEvents = [
@@ -13,11 +14,15 @@ const trendingEvents = [
     id: '1',
     image: 'https://cdn.teleticket.com.pe/especiales/coldplay2022/images/liv005_rs.jpg',
     title: 'Coldplay en Lima',
+    desc: 'Estadio Nacional - 20 de febrero',
+    price: 'DESDE S/. 700'
   },
   {
     id: '2',
     image: 'https://entradasbadbunnyperu.com/img/banner-home.webp',
     title: 'Bad Bunny World Tour',
+    desc: 'Costa 21 - 20 de mayo',
+    price: 'DESDE S/. 570'
   },
 ];
 
@@ -47,6 +52,15 @@ const cityEvents = [
 
 
 export default function HomeScreen() {
+  const [favorites, setFavorites] = useState<string[]>([]);
+
+  const toggleFavorite = (item: any) => {
+    setFavorites(prev =>
+      prev.includes(item.id)
+        ? prev.filter(id => id !== item.id)
+        : [...prev, item.id]
+    );
+  };
   return (
     <SafeAreaView edges={['top']} style={theme.screen}>
       <ScrollView
@@ -70,7 +84,9 @@ export default function HomeScreen() {
           </Text>
           <AppCarousel
             data={trendingEvents}
-            onPress={(item) => console.log(item.title)}
+            favorites={favorites}
+            onPressItem={(item) => console.log('Abrir detalle', item.title)}
+            onToggleFavorite={toggleFavorite}
           />
         </View>
         <View style={styles.container}>
