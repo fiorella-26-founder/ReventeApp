@@ -20,8 +20,6 @@ export default function TopBar() {
       </TouchableOpacity>
 
       <Text style={theme.text}>ENTRALA</Text>
-
-      {/* Spacer para centrar el título */}
       <View style={{ width: 32 }} />
     </View>
   );

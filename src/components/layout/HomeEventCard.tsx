@@ -31,6 +31,7 @@ export default function HomeEventCard({ item, onPress }: Props) {
                 <Text style={styles.title}>{item.title}</Text>
                 {item.date && <Text style={styles.meta}>{item.date}</Text>}
                 {item.location && <Text style={styles.meta}>{item.location}</Text>}
+                {item.price && <Text style={styles.price}>{item.price}</Text>}
             </View>
 
             <Pressable onPress={markFavorite}>
@@ -66,10 +67,15 @@ const styles = StyleSheet.create({
     content: {
         flex: 1,
         justifyContent: 'center',
-        gap: 16
+        gap: 8
     },
     title: {
         fontSize: 18,
+        fontWeight: '600',
+        color: colors.white
+    },
+     price: {
+        fontSize: 16,
         fontWeight: '600',
         color: colors.white
     },

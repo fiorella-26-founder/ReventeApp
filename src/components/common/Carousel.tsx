@@ -20,6 +20,7 @@ export default function AppCarousel({ data, onPressItem, onToggleFavorite, favor
       height={220}
       data={data}
       autoPlay
+      autoPlayInterval={4000}
       loop
       renderItem={({ item }) => {
         const isFavorite = favorites.includes(item.id);
