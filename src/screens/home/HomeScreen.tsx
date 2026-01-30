@@ -99,7 +99,7 @@ export default function HomeScreen() {
           <AppCarousel
             data={trendingEvents}
             favorites={favorites}
-            onPressItem={(item) => console.log('Abrir detalle', item.title)}
+            onPressItem={(event) => goEvent(event)}
             onToggleFavorite={toggleFavorite}
           />
         </View>
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
   scrollContent: {
   },
   title: {
-    color: colors.primary,
+    color: colors.secondary,
   },
   subtitle: {
     marginBottom: 8,

@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     height: 56,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
     backgroundColor: colors.background,
   },
   burger: {
