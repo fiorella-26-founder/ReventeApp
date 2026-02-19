@@ -9,7 +9,7 @@ import EventDetailScreen from '../screens/home/EventDetailScreen';
 const Stack = createNativeStackNavigator();
 
 export default function RootNavigator() {
-  const isAuthenticated = true;
+  const isAuthenticated = false;
 
   return (
     <NavigationContainer theme={NavigationTheme}>

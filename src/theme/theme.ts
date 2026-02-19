@@ -8,7 +8,6 @@ export const theme = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
   },
-
   text: {
     color: colors.text,
     fontFamily: fonts.regular,
@@ -24,4 +23,9 @@ export const theme = StyleSheet.create({
     fontSize: 20,
     color: colors.text,
   },
+  loginTitle: {
+    fontFamily: fonts.bold,
+    fontSize: 26,
+    color: colors.text,
+  }
 });
